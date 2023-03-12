@@ -1,7 +1,7 @@
 const photographerFactory = (data) => {
   const { name, portrait, id, country, city, tagline, price } = data;
 
-  const picture = `assets/photographers/${portrait}`;
+  const picture = `./assets/photographers/${portrait}`;
 
   function getUserCardDOM() {
     const article = document.createElement("article");
@@ -37,7 +37,48 @@ const photographerFactory = (data) => {
     article.appendChild(description);
     return article;
   }
-  return { name, picture, getUserCardDOM };
+
+  function getUserHeaderTextDOM() {
+    const description = document.createElement("div");
+    const title = document.createElement("h1");
+    title.innerText = name;
+    const locationPhotographer = document.createElement("p");
+    locationPhotographer.innerText = `${city}, ${country}`;
+    const taglineText = document.createElement("p");
+    taglineText.innerText = `${tagline}`;
+
+    description.appendChild(title);
+    description.appendChild(locationPhotographer);
+    description.appendChild(taglineText);
+
+    return description;
+  }
+
+  function getUserAvatarDOM() {
+    const avatar = document.createElement("img");
+    avatar.setAttribute("alt", name);
+    avatar.setAttribute("src", picture);
+
+    return avatar;
+  }
+
+  return {
+    name,
+    picture,
+    getUserCardDOM,
+    getUserHeaderTextDOM,
+    getUserAvatarDOM,
+  };
 };
+
+// const mediaFactory = (data) => {
+//   const { media } = data;
+
+//   function getUserAvatarDOM() {
+//     console.log(media);
+//   }
+
+//   return { getUserAvatarDOM };
+// };
 
 export { photographerFactory };
