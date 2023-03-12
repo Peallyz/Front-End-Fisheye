@@ -1,16 +1,40 @@
 const photographerFactory = (data) => {
-  const { name, portrait } = data;
+  const { name, portrait, id, country, city, tagline, price } = data;
 
   const picture = `assets/photographers/${portrait}`;
+  console.log(data);
 
   function getUserCardDOM() {
     const article = document.createElement("article");
+
+    // Create a link with img and name
+
+    const link = document.createElement("a");
+    link.setAttribute("href", `photographer.html?id=${id}`);
     const img = document.createElement("img");
     img.setAttribute("src", picture);
+    img.setAttribute("alt", name);
     const h2 = document.createElement("h2");
     h2.textContent = name;
-    article.appendChild(img);
-    article.appendChild(h2);
+    link.appendChild(img);
+    link.appendChild(h2);
+
+    // Create a block of text with location, tagline and price bellow link
+
+    const description = document.createElement("div");
+    const locationPhotographer = document.createElement("p");
+    locationPhotographer.innerText = `${city}, ${country}`;
+    const taglineText = document.createElement("p");
+    taglineText.innerText = `${tagline}`;
+    const priceText = document.createElement("p");
+    priceText.innerText = `${price}€/jour`;
+
+    description.appendChild(locationPhotographer);
+    description.appendChild(taglineText);
+    description.appendChild(priceText);
+
+    article.appendChild(link);
+    article.appendChild(description);
     return article;
   }
   return { name, picture, getUserCardDOM };
