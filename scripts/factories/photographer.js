@@ -2,7 +2,6 @@ const photographerFactory = (data) => {
   const { name, portrait, id, country, city, tagline, price } = data;
 
   const picture = `assets/photographers/${portrait}`;
-  console.log(data);
 
   function getUserCardDOM() {
     const article = document.createElement("article");
@@ -11,9 +10,10 @@ const photographerFactory = (data) => {
 
     const link = document.createElement("a");
     link.setAttribute("href", `photographer.html?id=${id}`);
+    link.setAttribute("alt", name);
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", name);
+    img.setAttribute("alt", "");
     const h2 = document.createElement("h2");
     h2.textContent = name;
     link.appendChild(img);
