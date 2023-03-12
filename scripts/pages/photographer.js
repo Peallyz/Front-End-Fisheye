@@ -1,1 +1,4 @@
-//Mettre le code JavaScript lié à la page photographer.html
+//Retrieve current URL id
+
+const url = new URL(window.location);
+const id = url.searchParams.get("id");
